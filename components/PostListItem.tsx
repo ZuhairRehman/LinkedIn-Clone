@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FFF',
     },
     //Header Styles
     username: {

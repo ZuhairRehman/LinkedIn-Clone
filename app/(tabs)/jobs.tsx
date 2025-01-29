@@ -4,7 +4,7 @@ import React from 'react';
 const JobsScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>JobsScreen</Text>
+            <Text style={styles.title}>Jobs Screen</Text>
         </View>
     );
 };
