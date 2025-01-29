@@ -8,7 +8,7 @@ type PostListItemProps = {
 };
 
 const PostListItem = ({ post }: PostListItemProps) => {
-    console.log(post);
+    console.log("PostListItem", post);
     return (
         <View>
             <Text>{post.content}</Text>
