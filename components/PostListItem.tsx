@@ -8,7 +8,7 @@ type PostListItemProps = {
 };
 
 const PostListItem = ({ post }: PostListItemProps) => {
-    console.log("PostListItem", post);
+    console.log('PostListItem', post);
     return (
         <View>
             <Text>{post.content}</Text>
@@ -18,4 +18,11 @@ const PostListItem = ({ post }: PostListItemProps) => {
 
 export default PostListItem;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
