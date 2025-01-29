@@ -1,10 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import PostListItem from '@/components/PostListItem';
+import posts from '../../assets/data/posts.json';
+
+//Test Variable
+const firstPost = posts[1];
 
 const TabOneScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>index</Text>
+            <PostListItem post={firstPost} />
         </View>
     );
 };
