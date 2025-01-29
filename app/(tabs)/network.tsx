@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const TabOneScreen = () => {
+const NetworkScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>index</Text>
+            <Text style={styles.title}>Network Screen</Text>
         </View>
     );
 };
 
-export default TabOneScreen;
+export default NetworkScreen;
 
 const styles = StyleSheet.create({
     container: {

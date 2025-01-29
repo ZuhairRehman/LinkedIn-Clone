@@ -2,7 +2,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable, useColorScheme } from 'react-native';
 
-
 function TabBarIcon(props: {
     name: React.ComponentProps<typeof FontAwesome>['name'];
     color: string;
@@ -10,7 +9,7 @@ function TabBarIcon(props: {
     return (
         <FontAwesome
             size={24}
-            style={{ marginBottom: -3 }}
+            style={{ marginBottom: 3 }}
             {...props}
         />
     );
@@ -29,6 +28,7 @@ export default function TabLayout() {
                 name='index'
                 options={{
                     title: 'Home Feed',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon
                             name='home'
@@ -58,6 +58,7 @@ export default function TabLayout() {
                 name='network'
                 options={{
                     title: 'My Network',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon
                             name='group'
@@ -70,6 +71,7 @@ export default function TabLayout() {
                 name='new-post'
                 options={{
                     title: 'Post',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon
                             name='plus-square'
@@ -82,6 +84,7 @@ export default function TabLayout() {
                 name='notifications'
                 options={{
                     title: 'Notifications',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon
                             name='bell'
@@ -94,6 +97,7 @@ export default function TabLayout() {
                 name='jobs'
                 options={{
                     title: 'Jobs',
+                    headerTitleAlign: 'center',
                     tabBarIcon: ({ color }) => (
                         <TabBarIcon
                             name='briefcase'

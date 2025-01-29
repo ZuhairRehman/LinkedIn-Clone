@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const TabOneScreen = () => {
+const NewPostsScreen = () => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>index</Text>
+            <Text style={styles.title}>New Posts Screen</Text>
         </View>
     );
 };
 
-export default TabOneScreen;
+export default NewPostsScreen;
 
 const styles = StyleSheet.create({
     container: {
