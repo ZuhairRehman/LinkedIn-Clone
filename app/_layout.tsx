@@ -39,7 +39,16 @@ function RootLayoutNav() {
                     name='(tabs)'
                     options={{ headerShown: false }}
                 />
-                
+                <Stack.Screen
+                    name='posts/[id]'
+                    options={{
+                        headerTitleAlign: 'center',
+                        title: 'Post',
+                        presentation: 'modal',
+                        animationTypeForReplace: 'push',
+                        animation: 'slide_from_bottom',
+                    }}
+                />
             </Stack>
         </ThemeProvider>
     );

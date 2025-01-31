@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Post } from '@/types';
 import React from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 //Types
 type PostListItemProps = {
@@ -26,45 +27,51 @@ const FooterButton = ({ text, icon }: FooterButtonProp) => {
 };
 
 const PostListItem = ({ post }: PostListItemProps) => {
-    console.log('PostListItem', post);
+    //console.log('PostId:', post.id);
     return (
-        <View>
-            {/* Header */}
-            <View style={styles.header}>
-                <Image
-                    source={{ uri: post.author.image }}
-                    style={styles.userimage}
-                />
-                <View>
-                    <Text style={styles.username}>{post.author.name}</Text>
-                    <Text>{post.author.position}</Text>
+        <Link
+            href={`/posts/${post.id}`}
+            asChild
+        >
+            <Pressable style={styles.container}>
+                {/* Header */}
+                <View style={styles.header}>
+                    <Image
+                        source={{ uri: post.author.image }}
+                        style={styles.userimage}
+                    />
+                    <View>
+                        <Text style={styles.username}>{post.author.name}</Text>
+                        <Text>{post.author.position}</Text>
+                    </View>
                 </View>
-            </View>
-            {/* Body */}
-            <Text style={styles.content}>{post.content}</Text>
-            {/* Image */}
-            {post.image && (
-                <Image
-                    source={{ uri: post.image }}
-                    style={styles.postImage}
-                />
-            )}
-            {/* Footer */}
-            <View style={styles.footer}>
-                <FooterButton
-                    text='Like'
-                    icon='thumbs-o-up'
-                />
-                <FooterButton
-                    text='comment'
-                    icon='comment-o'
-                />
-                <FooterButton
-                    text='share'
-                    icon='share'
-                />
-            </View>
-        </View>
+
+                {/* Body */}
+                <Text style={styles.content}>{post.content}</Text>
+                {/* Image */}
+                {post.image && (
+                    <Image
+                        source={{ uri: post.image }}
+                        style={styles.postImage}
+                    />
+                )}
+                {/* Footer */}
+                <View style={styles.footer}>
+                    <FooterButton
+                        text='Like'
+                        icon='thumbs-o-up'
+                    />
+                    <FooterButton
+                        text='comment'
+                        icon='comment-o'
+                    />
+                    <FooterButton
+                        text='share'
+                        icon='share'
+                    />
+                </View>
+            </Pressable>
+        </Link>
     );
 };
 
@@ -73,8 +80,10 @@ export default PostListItem;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#FFF',
+        width: '100%',
+        maxWidth: 500,
+        alignSelf: 'center',
     },
     //Header Styles
     username: {
@@ -101,8 +110,10 @@ const styles = StyleSheet.create({
         aspectRatio: 1,
     },
     content: {
-        margin: 10,
-        marginTop: 0,
+        margin: 15,
+        backgroundColor: 'white',
+        lineHeight: 23,
+        padding: 7,
     },
 
     //Footer Styles
@@ -111,6 +122,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         justifyContent: 'space-around',
         borderTopWidth: 0.6,
+        backgroundColor: 'white',
         borderColor: 'lightgray',
     },
 });
