@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import posts from '@/assets/data/posts.json';
 import PostListItem from '@/components/PostListItem';
 import { useLocalSearchParams } from 'expo-router';
+import Post from '@/types/Post';
 
 const PostDetailsScreen = () => {
     //Hooks

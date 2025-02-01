@@ -28,25 +28,33 @@ const FooterButton = ({ text, icon }: FooterButtonProp) => {
 
 const PostListItem = ({ post }: PostListItemProps) => {
     //console.log('PostId:', post.id);
+    //console.log('post:', post);
     return (
         <Link
             href={`/posts/${post.id}`}
             asChild
         >
             <Pressable style={styles.container}>
-                {/* Header */}
-                <View style={styles.header}>
-                    <Image
-                        source={{ uri: post.author.image }}
-                        style={styles.userimage}
-                    />
-                    <View>
-                        <Text style={styles.username}>{post.author.name}</Text>
-                        <Text>{post.author.position}</Text>
-                    </View>
-                </View>
-
+                <Link
+                    href={`/users/${post.author.id}`}
+                    asChild
+                >
+                    {/* Header */}
+                    <Pressable
+                        style={styles.header}
+                    >
+                        <Image
+                            source={{ uri: post.author.image }}
+                            style={styles.userimage}
+                        />
+                        <View>
+                            <Text style={styles.username}>{post.author.name}</Text>
+                            <Text>{post.author.position}</Text>
+                        </View>
+                    </Pressable>
+                </Link>
                 {/* Body */}
+
                 <Text style={styles.content}>{post.content}</Text>
                 {/* Image */}
                 {post.image && (
@@ -55,6 +63,7 @@ const PostListItem = ({ post }: PostListItemProps) => {
                         style={styles.postImage}
                     />
                 )}
+
                 {/* Footer */}
                 <View style={styles.footer}>
                     <FooterButton

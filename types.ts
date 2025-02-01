@@ -11,4 +11,6 @@ export type User = {
     id: string;
     position: string;
     image?: string; //The ? character is for optional type
+    backImage?: string; //The ? character is for optional type
+    about: string;
 };
