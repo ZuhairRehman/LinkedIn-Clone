@@ -3,6 +3,7 @@ import { useNavigation } from 'expo-router';
 import userJSON from '@/assets/data/user.json';
 import { useLayoutEffect, useState } from 'react';
 import { User } from '@/types';
+import ExperienceListItem from '@/components/ExperienceListItem';
 const ProfileScreen = () => {
     //console.log('user', userJSON);
     //State Variables
@@ -30,7 +31,7 @@ const ProfileScreen = () => {
     }
 
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 {/* Header */}
                 <View style={styles.header}>
@@ -62,7 +63,17 @@ const ProfileScreen = () => {
                     <Text style={styles.aboutTitle}>About</Text>
                     <Text style={styles.aboutContent}>{user.about}</Text>
                 </View>
-                {/*Experiences */}
+                {/*Experience */}
+                <View style={styles.about}>
+                    <Text style={styles.aboutTitle}>Experience</Text>
+
+                    {user.experience?.map(experience => (
+                        <ExperienceListItem
+                            key={experience.id}
+                            experience={experience}
+                        />
+                    ))}
+                </View>
             </View>
         </ScrollView>
     );
