@@ -12,7 +12,7 @@ export type User = {
     position: string;
     image?: string; //The ? character is for optional type
     backImage?: string; //The ? character is for optional type
-    about: string;
+    about?: string;
     experience?: Experience[]; //The ? character is for optional type
 };
 
