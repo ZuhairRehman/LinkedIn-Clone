@@ -6,11 +6,25 @@ import {
     TouchableOpacity,
     View,
     Image,
+    ActivityIndicatorBase,
+    ActivityIndicator,
 } from 'react-native';
 import React, { useLayoutEffect, useState } from 'react';
 import { useNavigation, useRouter } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome } from '@expo/vector-icons';
+import { gql, useMutation } from '@apollo/client';
+
+const insertPost = gql`
+    mutation MyMutation($userid: ID, $image: String, $content: String!) {
+        insertPost(content: $content, image: $image, userid: $userid) {
+            userid
+            content
+            id
+            image
+        }
+    }
+`;
 
 const NewPostsScreen = () => {
     //State Variables
@@ -18,15 +32,28 @@ const NewPostsScreen = () => {
     const [image, setImage] = useState<string | null>(null);
 
     // Hooks
+    const [insertPostMutation, { loading, error, data }] = useMutation(insertPost); //Hook provided by apollo for inserting post mutations
     const navigation = useNavigation();
     const router = useRouter();
 
     // Function to handle the post button press
-    const onPost = () => {
+    const onPost = async () => {
         console.log(content);
-        setContent('');
-        setImage(null);
-        router.back(); // Navigate back to the home screen after posting
+
+        try {
+            await insertPostMutation({
+                variables: {
+                    userid: 2,
+                    content: content,
+                },
+            });
+
+            setContent('');
+            setImage(null);
+            router.back(); // Navigate back to the home screen after posting
+        } catch (error) {
+            console.log('error inserting', error);
+        }
     };
 
     //Routing modifications
@@ -37,11 +64,13 @@ const NewPostsScreen = () => {
                     onPressIn={onPost}
                     style={styles.postButton}
                 >
-                    <Text style={styles.postBtnText}>Submit</Text>
+                    <Text style={styles.postBtnText}>
+                        {loading ? <ActivityIndicator /> : 'Submit'}
+                    </Text>
                 </TouchableOpacity>
             ),
         });
-    }, [onPost]);
+    }, [onPost, loading]);
 
     // Function to handle image picking
     const pickImage = async () => {
