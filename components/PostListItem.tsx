@@ -37,17 +37,17 @@ const PostListItem = ({ post }: PostListItemProps) => {
             <Pressable style={styles.container}>
                 {/* Header */}
                 <Link
-                    href={`/users/${post.author.id}`}
+                    href={`/users/${post.profile.id}`}
                     asChild
                 >
                     <Pressable style={styles.header}>
                         <Image
-                            source={{ uri: post.author.image }}
+                            source={{ uri: post.profile.image }}
                             style={styles.userimage}
                         />
                         <View>
-                            <Text style={styles.username}>{post.author.name}</Text>
-                            <Text>{post.author.position}</Text>
+                            <Text style={styles.username}>{post.profile.name}</Text>
+                            <Text>{post.profile.position}</Text>
                         </View>
                     </Pressable>
                 </Link>
