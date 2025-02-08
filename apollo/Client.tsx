@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
     uri: 'https://pajalpit.us-east-a.ibm.stepzen.net/api/iced-markhor/graphql',

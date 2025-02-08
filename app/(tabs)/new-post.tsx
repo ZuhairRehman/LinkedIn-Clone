@@ -51,6 +51,7 @@ const NewPostsScreen = () => {
             setContent('');
             setImage(null);
             router.back(); // Navigate back to the home screen after posting
+        
         } catch (error) {
             console.log('error inserting', error);
         }

@@ -11,7 +11,7 @@ export type User = {
     id: string;
     position: string;
     image?: string; //The ? character is for optional type
-    backImage?: string; //The ? character is for optional type
+    backimage?: string; //The ? character is for optional type
     about?: string;
     experience?: Experience[]; //The ? character is for optional type
 };
@@ -19,6 +19,6 @@ export type User = {
 export type Experience = {
     id: string;
     title: string;
-    companyName: string;
-    companyImage?: string;
+    companyname: string;
+    companyimage?: string;
 };
