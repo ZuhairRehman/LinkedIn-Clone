@@ -2,10 +2,9 @@ import { ActivityIndicator, ActivityIndicatorBase, FlatList } from 'react-native
 import PostListItem from '@/components/PostListItem';
 import { gql, useQuery } from '@apollo/client';
 import { Text } from 'react-native';
-//import posts from '../../assets/data/posts.json';
+import { useState } from 'react';
 
-//Test Variable
-//const firstPost = posts[0];
+//GQL queries
 const postList = gql`
     query PostListQuery {
         postList {
@@ -21,20 +20,52 @@ const postList = gql`
         }
     }
 `;
+//Pagination
+const postPaginatedQuery = gql`
+    query PostPaginatedQuery($first: Int, $after: Int) {
+        postPaginatedList(first: $first, after: $after) {
+            id
+            content
+            image
+            profile {
+                id
+                name
+                position
+                image
+            }
+        }
+    }
+`;
 
 const HomeFeedScreen = () => {
-    const { loading, error, data } = useQuery(postList);
+    //State Variables
+    const [hasMore, setHasMore] = useState(true);
+
+    // Fetching data with Apollo Client
+    const { loading, error, data, fetchMore } = useQuery(postPaginatedQuery, {
+        variables: { first: 2 },
+    });
 
     if (loading) return <ActivityIndicator />;
     if (error) return <Text>Something went wrong...</Text>;
     //console.log('data: ', data);
 
+    //Util functions
+
+    const loadMore = async () => {
+        if (!hasMore) return;
+        const resp = await fetchMore({ variables: { after: data.postPaginatedList.length } }); //Used apollo cache for the next set of data fetch request
+        if (resp.data.postPaginatedList.length === 0) setHasMore(false);
+        console.log('response: ', resp.data.postPaginatedList);
+    };
+
     return (
         <FlatList
-            data={data.postList}
+            data={data.postPaginatedList}
             renderItem={({ item }) => <PostListItem post={item} />}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ gap: 10 }}
+            onEndReached={loadMore}
         />
     );
 };
